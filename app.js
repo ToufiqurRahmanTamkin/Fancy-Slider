@@ -37,6 +37,7 @@ const showImages = (images) => {
 
 const getImages = (query) => {
     toggleSpinner(true);
+    setTimeout(2000);
     fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
         .then(response => response.json())
         .then(data => showImages(data.hits))
@@ -94,7 +95,23 @@ const createSlider = () => {
         changeSlide(slideIndex);
     }, duration);
 
+    suggestionImage();
+
 }
+
+// suggestion part under the slider
+
+const suggestionImage = () => {
+    const before = document.getElementById('suggestion').innerHTML;
+    console.log(before);
+    const newdiv = document.createElement('div');
+    newdiv.innerHTML = '';
+    const sliderID = document.getElementById('sliders');
+    newdiv.appendChild(before);
+    sliderID.appendChild(newdiv);
+
+}
+
 
 // change slider index 
 const changeItem = index => {
@@ -160,9 +177,9 @@ const toggleSpinner = (flag) => {
     const spinner = document.getElementById('laoding-spinner-id');
     if (flag) {
         spinner.classList.remove('d-none');
-        console.log('spinner on');
+        // console.log('spinner on');
     } else {
         spinner.classList.add('d-none');
-        console.log('spinner off');
+        // console.log('spinner off');
     }
 }
