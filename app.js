@@ -30,10 +30,13 @@ const showImages = (images) => {
         gallery.appendChild(div)
     })
 
+    toggleSpinner(false);
+
 }
 
 
 const getImages = (query) => {
+    toggleSpinner(true);
     fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
         .then(response => response.json())
         .then(data => showImages(data.hits))
@@ -152,3 +155,14 @@ document.getElementById('duration').addEventListener('keypress', function(event)
         // console.log('clicked');
     }
 })
+
+const toggleSpinner = (flag) => {
+    const spinner = document.getElementById('laoding-spinner-id');
+    if (flag) {
+        spinner.classList.remove('d-none');
+        console.log('spinner on');
+    } else {
+        spinner.classList.add('d-none');
+        console.log('spinner off');
+    }
+}
