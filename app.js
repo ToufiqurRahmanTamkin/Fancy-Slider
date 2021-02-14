@@ -129,10 +129,10 @@ searchBtn.addEventListener('click', function() {
 
 sliderBtn.addEventListener('click', function() {
 
-    if (document.getElementById('duration').value > 0 || 1000) {
+    if (document.getElementById('duration').value < 0) {
+        return;
+    } else if (document.getElementById('duration').value > 0 || 1000) {
         createSlider();
-    } else {
-        confirm('enter a valid duration number');
     }
 })
 
